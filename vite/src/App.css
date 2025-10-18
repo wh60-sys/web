@@ -1,42 +1,162 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* ----------  RESET KECIL  ---------- */
+* { box-sizing: border-box; }
+
+/* ----------  CONTAINER  ---------- */
+.ruang-kontainer {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  overflow: hidden;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+/* ----------  TOMBOL DRAGGABLE  ---------- */
+.tombol-draggable {
+  position: absolute;
+  user-select: none;
+  border-radius: 6px;
+  overflow: hidden;        /* semua isi tidak keluar */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+  transition: box-shadow 0.2s;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.tombol-draggable:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* link utama */
+.btn-kuliah {
+  display: block;
+  padding: 6px 14px;
+  color: #fff;
+  font-size: 13px;
+  text-decoration: none;
+  border-radius: 6px 6px 0 0;
 }
 
-.card {
-  padding: 2em;
+/* control bar kecil di bawah tombol */
+.control-bar {
+  display: flex;
+  justify-content: space-around;
+  background: #f5f5f5;
+  border-top: 1px solid #e3e3e3;
+  height: 24px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.tombol-draggable:hover .control-bar {
+  opacity: 1;
+}
+.control-bar button {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 24px;
+}
+.control-bar button:hover {
+  background: #e0e0e0;
 }
 
-.read-the-docs {
-  color: #888;
+/* info box (di dalam tombol) */
+.info-box {
+  position: absolute;
+  inset: 0;               /* memenuhi seluruh area tombol */
+  background: #fff;
+  z-index: 10;
+  padding: 8px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.info-close-btn {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+.info-item {
+  display: flex;
+  justify-content: space-between;
+}
+.status-badge {
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: bold;
+}
+.status-stop {
+  background: #ffc107;
+  color: #000;
+}
+.status-out {
+  background: #28a745;
+  color: #fff;
+}
+
+/* ----------  MODAL  ---------- */
+.edit-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.edit-modal {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.edit-modal h3 {
+  margin: 0 0 10px;
+}
+.edit-modal label {
+  font-size: 13px;
+}
+.edit-modal input,
+.edit-modal select {
+  width: 100%;
+  padding: 6px;
+  margin-top: 4px;
+}
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+.save-btn,
+.cancel-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.save-btn {
+  background: #646cff;
+  color: #fff;
+}
+.cancel-btn {
+  background: #ccc;
+  color: #000;
+}
+
+/* tombol tambah */
+.add-button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  background: #646cff;
+  color: #fff;
+  cursor: pointer;
 }
