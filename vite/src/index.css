@@ -66,3 +66,314 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+ul {
+  list-style-type: none; /* Titik hilang */
+  padding: 0;            /* Menghilangkan indentasi kiri */
+  margin: 0;
+}
+
+.btn-kuliah {
+  display: inline-block; /* HARUS ADA. Mengizinkan pengaturan padding dan margin. */
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  text-decoration: none; /* Hilangkan garis bawah link */
+  /*position: fixed; /* Posisi tetap saat scrolling */
+
+
+  margin: 5px; /* Memberikan jarak 5 piksel di semua sisi (atas, kanan, bawah, kiri) */
+  /*margin-right: 10px; /* Memberikan jarak 10px hanya di sisi kanan */
+  /*margin-bottom: 5px; /* Memberikan jarak 5px di bawah */
+}
+
+.btn-kuliah:hover {
+  border-color: #646cff;
+
+}
+
+/* *** RUANG (Wadah Batasan) *** */
+.ruang-kontainer {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  border: 2px dashed #ccc;
+  margin: 20px 0;
+  background: #f9f9f9;
+}
+
+.tombol-draggable {
+  position: absolute;
+  user-select: none;
+}
+
+.tombol-draggable:active {
+  cursor: grabbing !important;
+}
+
+.btn-kuliah {
+  display: inline-block;
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.button-controls {
+  display: flex;
+  gap: 5px;
+  margin-top: 5px;
+  justify-content: center;
+}
+
+/* FITUR HOVER - Sembunyikan button controls secara default */
+.button-controls-hover {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+
+/* Tampilkan button controls saat hover pada tombol draggable */
+.tombol-draggable:hover .button-controls-hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.control-btn {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.control-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.info-btn:hover {
+  background: #d4e8ff;
+}
+
+.edit-btn:hover {
+  background: #ffe5b4;
+}
+
+.duplicate-btn:hover {
+  background: #b4d7ff;
+}
+
+.delete-btn:hover {
+  background: #ffb4b4;
+}
+
+/* Info Box */
+.info-box {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 10px;
+  background: white;
+  border: 2px solid #646cff;
+  border-radius: 8px;
+  padding: 12px;
+  padding-top: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  min-width: 200px;
+  z-index: 100;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.info-close-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #999;
+  cursor: pointer;
+  padding: 2px 6px;
+  line-height: 1;
+  transition: all 0.2s;
+}
+
+.info-close-btn:hover {
+  color: #ff4444;
+  transform: scale(1.2);
+}
+
+.info-item {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+.info-item:last-child {
+  margin-bottom: 0;
+}
+
+.info-item strong {
+  color: #646cff;
+  margin-right: 5px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.status-stop {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.status-out {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.add-button {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.add-button:hover {
+  background: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.add-button:active {
+  transform: translateY(0);
+}
+
+.edit-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.edit-modal {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  min-width: 400px;
+  max-width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.edit-modal h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.edit-modal label {
+  display: block;
+  margin-bottom: 15px;
+  color: #555;
+  font-weight: 500;
+}
+
+.edit-modal input[type="text"],
+.edit-modal input[type="date"],
+.edit-modal input[type="number"],
+.edit-modal select {
+  width: 100%;
+  padding: 8px 12px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.edit-modal input[type="color"] {
+  height: 40px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.edit-modal select {
+  cursor: pointer;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  justify-content: flex-end;
+}
+
+.save-btn, .cancel-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.save-btn {
+  background: #646cff;
+  color: white;
+}
+
+.save-btn:hover {
+  background: #535ac8;
+}
+
+.cancel-btn {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.cancel-btn:hover {
+  background: #d0d0d0;
+}

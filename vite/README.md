@@ -1,16 +1,84 @@
-# React + Vite
+# PANDUAN DEPLOY PROYEK VITE KE GITHUB PAGES (DARI AWAL)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+=======================================================
+PROSES 1: PEMBUATAN DAN KONFIGURASI PROYEK DI CODE SPACE
+=======================================================
 
-Currently, two official plugins are available:
+## LANGKAH 1: BUAT PROYEK VITE BARU
+1. Di Terminal Code Space, jalankan:
+   npm create vite@latest
+2. Ikuti prompt, catat nama proyek/repositori Anda (misalnya: 'my-app-gh').
+3. Masuk ke direktori proyek:
+   cd <nama-proyek-kamu>
+4. Instal dependensi:
+   npm install
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## LANGKAH 2: KONFIGURASI PROPERTI 'BASE' VITE
+Properti 'base' harus diisi dengan NAMA REPOSITORI Anda.
+1. Buka file 'vite.config.js' (atau .ts).
+2. Tambahkan atau ubah properti 'base' di 'defineConfig()':
 
-## React Compiler
+   // Contoh vite.config.js
+   import { defineConfig } from 'vite'
+   // ... plugin lainnya
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+   export default defineConfig({
+     base: '/<NAMA-REPO-KAMU>/', // GANTI dengan nama repositori Anda
+     // ... plugin lainnya
+   })
 
-## Expanding the ESLint configuration
+## LANGKAH 3: INSTALASI PACKAGE 'gh-pages'
+Kita akan menggunakan package ini untuk otomatisasi deployment.
+1. Di Terminal Code Space, instal sebagai dev dependency:
+   npm install gh-pages --save-dev
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## LANGKAH 4: KONFIGURASI SCRIPT DEPLOY
+1. Buka file 'package.json'.
+2. Tambahkan skrip 'predeploy' dan 'deploy' di bagian "scripts":
+
+   "scripts": {
+     "dev": "vite",
+     "build": "vite build",
+     "preview": "vite preview",
+     "predeploy": "npm run build", 
+     "deploy": "gh-pages -d dist" // Perintah utama
+   },
+
+=======================================================
+PROSES 2: COMMIT, BUILD, DAN DEPLOY
+=======================================================
+
+## LANGKAH 5: COMMIT DAN PUSH PERUBAHAN
+Pastikan semua konfigurasi (vite.config.js dan package.json) sudah disimpan ke repositori.
+1. Jalankan perintah Git di Terminal Code Space:
+   git add .
+   git commit -m "feat: setup vite config and gh-pages"
+   git push
+
+## LANGKAH 6: JALANKAN PROSES DEPLOY
+Perintah ini akan membuat folder 'dist' dan mengirimkannya ke branch 'gh-pages'.
+1. Di Terminal Code Space, jalankan:
+   npm run deploy
+
+   (Proses akan otomatis: build -> buat branch 'gh-pages' -> push ke GitHub)
+
+=======================================================
+PROSES 3: AKTIVASI GITHUB PAGES (KELUAR DARI CODE SPACE)
+=======================================================
+
+## LANGKAH 7: AKTIVASI DI PENGATURAN REPOSITORI
+1. Buka repositori Anda di web browser (GitHub.com).
+2. Pergi ke tab **Settings (Pengaturan)**.
+3. Klik **Pages** di menu samping.
+4. Di bagian **Branch**:
+   - Pilih branch **'gh-pages'**.
+   - Pilih folder **'/(root)'**.
+5. Klik **Save (Simpan)**.
+
+## LANGKAH 8: VERIFIKASI LINK
+Tunggu 1-5 menit hingga GitHub selesai memproses deployment.
+1. Akses link yang muncul di bagian Pages, formatnya:
+   https://<USERNAME>.github.io/<NAMA-REPO-KAMU>/
+2. Proyek Vite Anda seharusnya sudah dapat diakses.
+
+# SELESAI
